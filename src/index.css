@@ -1,0 +1,330 @@
+:root {
+    --bg: #f4f4f4;
+    --surface: #ffffff;
+    --text: #1f1f1f;
+    --border: #d0d0d0;
+    --focus: #6aaa64;
+    --radius: 8px;
+    --space: 12px;
+    --input-height: 48px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    max-width: 420px;
+    margin: 40px auto;
+    padding: var(--space);
+}
+
+.app-footer {
+    margin-top: 18px;
+    text-align: center;
+}
+
+.app-footer-link {
+    color: #555;
+    font-size: 19px;
+    text-decoration: none;
+    border-bottom: 1px dashed transparent;
+}
+
+.app-footer-link:hover {
+    color: var(--focus);
+    border-bottom-color: var(--focus);
+}
+
+input {
+    width: 100%;
+    height: var(--input-height);
+    padding: 0 var(--space);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 45px;
+    text-align: center;
+    font-weight: bold;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--focus);
+}
+
+.input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.guess-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.guess-input {
+    flex: 1;
+}
+
+.guess-submit {
+    height: var(--input-height);
+    min-width: var(--input-height);
+    padding: 0 14px;
+    border: 1px solid var(--focus);
+    border-radius: var(--radius);
+    background: var(--focus);
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.language-switcher {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.language-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.language-btn {
+    border: 1px solid #cfcfcf;
+    border-radius: 999px;
+    background: #fff;
+    color: #333;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.language-btn.active {
+    background: var(--focus);
+    border-color: var(--focus);
+    color: #fff;
+}
+
+.results {
+    margin: 16px auto;
+    border-collapse: separate;
+    border-spacing: 6px;
+}
+
+.cell {
+    width: 52px;
+    height: 52px;
+    border: 2px solid #d0d0d0;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: #ffffff;
+    color: #1f1f1f;
+}
+
+.cell.white {
+    background: #ffffff;
+    border-color: #d0d0d0;
+    color: #1f1f1f;
+}
+
+.cell.gray {
+    background: #cacaca;
+    border-color: #c3c3c3;
+    color: #1f1f1f;
+}
+
+.cell.yellow {
+    background: #c9b458;
+    border-color: #c9b458;
+    color: #ffffff;
+}
+
+.cell.green {
+    background: #6aaa64;
+    border-color: #6aaa64;
+    color: #ffffff;
+}
+
+/* Modal overlay */
+.banner-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    animation: fadeIn 0.25s ease;
+}
+
+/* Modal box */
+.banner {
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    padding: 40px 48px;
+    min-width: 320px;
+    max-width: 90vw;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35),
+    0 1px 0 rgba(255, 255, 255, 0.08) inset;
+    text-align: center;
+    position: relative;
+    animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.banner.success {
+    border: 6px solid #6aaa64;
+}
+
+.banner.error {
+    border: 4px solid #e03e3e;
+}
+
+.banner.warning {
+    border: 4px solid #c9b458;
+}
+
+.banner.info {
+    border: 4px solid #4a90d9;
+}
+
+.banner-content {
+    text-align: center;
+    font-size: 45px;
+    margin: 0 0 4px;
+}
+
+.banner-subtitle {
+    font-size: 16px;
+    color: #555;
+    margin: 8px 0 24px;
+}
+
+.banner-btn {
+    display: inline-block;
+    padding: 12px 32px;
+    background: var(--focus);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.banner-btn:hover {
+    background: #5a9a55;
+    transform: translateY(-1px);
+}
+
+.banner-btn:active {
+    transform: translateY(0);
+}
+
+/* Keyboard */
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.keyboard-row {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.keyboard-key {
+    min-width: 29px;
+    height: 40px;
+    padding: 0 6px;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    background: #ffffff;
+    color: #1f1f1f;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-transform: uppercase;
+}
+
+.keyboard-key:hover:not(:disabled) {
+    border-color: #999;
+    background: #f0f0f0;
+    transform: translateY(-1px);
+}
+
+.keyboard-key:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.keyboard-key.key-correct {
+    background: #6aaa64;
+    border-color: #6aaa64;
+    color: #ffffff;
+}
+
+.keyboard-key.key-present {
+    background: #c9b458;
+    border-color: #c9b458;
+    color: #ffffff;
+}
+
+.keyboard-key.key-absent {
+    background: #d3d6da;
+    border-color: #d3d6da;
+    color: #1f1f1f;
+}
+
+.keyboard-key:disabled,
+.keyboard-key.key-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(32px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
